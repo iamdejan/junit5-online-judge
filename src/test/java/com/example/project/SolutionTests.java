@@ -19,11 +19,11 @@ import java.io.*;
 
 class SolutionTests {
 
-	final String LINES = "----------------------";
+	final String LINES = "--------------------------";
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test-case.csv", numLinesToSkip = 1)
-	void add(String input, String output) {
+	void test(String input, String output) {
 		try {
 			//1. read input
 			BufferedReader inputBR = new BufferedReader(new FileReader("src/test/resources/" + input));
@@ -41,7 +41,7 @@ class SolutionTests {
 			//3. run the program, of course!
 			Solution.run();
 
-			//4. produce output
+			//4. produce output & reset stdin-stdout
 			String programOutput = out.toString();
 			System.setIn(defaultIn);
 			System.setOut(defaultOut);
@@ -50,10 +50,10 @@ class SolutionTests {
 			BufferedReader outputBR = new BufferedReader(new FileReader("src/test/resources/" + output));
 			String answer = outputBR.readLine();
 
-			System.out.println("Program output" + System.lineSeparator() + LINES + System.lineSeparator() + programOutput + System.lineSeparator() + LINES + System.lineSeparator() +
-							   "\nExpected output" + System.lineSeparator() + LINES + System.lineSeparator() + answer + System.lineSeparator() + LINES + System.lineSeparator());
+			System.out.println("Program output\n" + LINES + "\n" + programOutput + "\n" + LINES + "\n" +
+							   "\nExpected output\n" + LINES + "\n" + answer + "\n" + LINES + "\n");
 
-			assertTrue(programOutput.equals(answer));
+			assertArrayEquals(answer.toCharArray(), programOutput.toCharArray());
 
 		} catch (IOException e) {
 			fail(e.getMessage());
