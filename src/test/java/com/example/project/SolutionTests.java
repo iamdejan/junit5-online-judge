@@ -19,19 +19,34 @@ import java.io.*;
 
 class SolutionTests {
 
-	final String LINES = "--------------------------";
+	final String LINES = "------------------------------";
+
+	StringBuilder readInput(String fileName) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("src/test/resources/" + fileName));
+
+		StringBuilder sb = new StringBuilder();
+
+		String line = br.readLine();
+
+		while (line != null) {
+			sb.append(line);
+			sb.append(System.lineSeparator());
+			line = br.readLine();
+		}
+
+		return sb;
+	}
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/test-case.csv", numLinesToSkip = 1)
 	void test(String input, String output) {
 		try {
 			//1. read input
-			BufferedReader inputBR = new BufferedReader(new FileReader("src/test/resources/" + input));
-			String line = inputBR.readLine();
+			String lines = readInput(input).toString().trim();
 
 			//2. override stdin & stdout
 			InputStream defaultIn = System.in;
-			ByteArrayInputStream in = new ByteArrayInputStream(line.getBytes());
+			ByteArrayInputStream in = new ByteArrayInputStream(lines.getBytes());
 			System.setIn(in);
 
 			PrintStream defaultOut = System.out;
@@ -47,8 +62,7 @@ class SolutionTests {
 			System.setOut(defaultOut);
 
 			//5. compare output
-			BufferedReader outputBR = new BufferedReader(new FileReader("src/test/resources/" + output));
-			String answer = outputBR.readLine();
+			String answer = readInput(output).toString();
 
 			System.out.println("Program output\n" + LINES + "\n" + programOutput + "\n" + LINES + "\n" +
 							   "\nExpected output\n" + LINES + "\n" + answer + "\n" + LINES + "\n");

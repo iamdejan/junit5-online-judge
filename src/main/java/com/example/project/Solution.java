@@ -10,16 +10,18 @@
 
 package com.example.project;
 
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Solution {
 
 	public static void run() {
 		Scanner reader = new Scanner(System.in);
-		int a = reader.nextInt();
-		int b = reader.nextInt();
-		System.out.print((a + b));
+		int N = reader.nextInt();
+		long result = 1L;
+		while((N--) > 0) {
+			result *= reader.nextLong();
+		}
+		System.out.println(result);
 	}
 
 }
