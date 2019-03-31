@@ -1,13 +1,3 @@
-/*
- * Copyright 2015-2018 the original author or authors.
- *
- * All rights reserved. This program and the accompanying materials are
- * made available under the terms of the Eclipse Public License v2.0 which
- * accompanies this distribution and is available at
- *
- * http://www.eclipse.org/legal/epl-v20.html
- */
-
 package com.example.project;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,7 +44,7 @@ class SolutionTests {
 			System.setOut(new PrintStream(out));
 
 			//3. run the program, of course!
-			Solution.run();
+			Solution.main(null);
 
 			//4. produce output & reset stdin-stdout
 			String programOutput = out.toString();
@@ -69,7 +59,7 @@ class SolutionTests {
 
 			assertArrayEquals(answer.toCharArray(), programOutput.toCharArray());
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			fail(e.getMessage());
 		}
 	}
