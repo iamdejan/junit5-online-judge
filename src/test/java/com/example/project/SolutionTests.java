@@ -9,7 +9,7 @@ import java.io.*;
 
 class SolutionTests {
 
-	final String LINES = "------------------------------";
+	final String LINES = "------------------------------------------------------------";
 
 	StringBuilder readInput(String fileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("src/test/resources/" + fileName));
@@ -57,7 +57,7 @@ class SolutionTests {
 			System.out.println("Program output\n" + LINES + "\n" + programOutput + "\n" + LINES + "\n" +
 							   "\nExpected output\n" + LINES + "\n" + answer + "\n" + LINES + "\n");
 
-			assertArrayEquals(answer.toCharArray(), programOutput.toCharArray());
+			assertEquals(answer, programOutput);
 
 		} catch (Exception e) {
 			fail(e.getMessage());
