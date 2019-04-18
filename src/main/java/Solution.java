@@ -1,5 +1,3 @@
-package com.example.project;
-
 import java.math.BigInteger;
 import java.util.Scanner;
 
