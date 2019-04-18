@@ -18,5 +18,5 @@ gradle-app.setting
 
 # Misc
 *.log
-*.DS_Store
-*/*/*.DS_Store
+.DS_Store
+*/*/.DS_Store
